@@ -2,7 +2,6 @@ const router = require('express').Router();
 const { User } = require('../models');
 const withAuth = require('../utils/auth');
 
-// TODO: Add a comment describing the functionality of the withAuth middleware
 // checks to see if user is logged in before rendering homepage view
 router.get('/', withAuth, async (req, res) => {
   try {
@@ -15,7 +14,7 @@ router.get('/', withAuth, async (req, res) => {
 
     res.render('homepage', {
       users,
-      // TODO: Add a comment describing the functionality of this property
+    
       // Passes logged_in variable to the view so that it can be used
       logged_in: req.session.logged_in,
     });
@@ -25,7 +24,6 @@ router.get('/', withAuth, async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  // TODO: Add a comment describing the functionality of this if statement
   // If they're already logged in, redirects user to the homepage
   if (req.session.logged_in) {
     res.redirect('/');
