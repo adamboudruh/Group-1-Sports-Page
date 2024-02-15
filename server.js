@@ -7,17 +7,13 @@ const helpers = require('./utils/helpers');
 
 const sequelize = require('./config/connection');
 
-// TODO: Add a comment describing the functionality of this expression
 const SequelizeStore = require('connect-session-sequelize')(session.Store);      
-//Importing the sequelize sessions package and allows session data to be stored in sequelize
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
 const hbs = exphbs.create({ helpers });
 
-// TODO: Add a comment describing the functionality of this object
-// Creates the session and gives it its properties
 const sess = {
   secret: 'Super secret secret',
   cookie: {},
@@ -28,8 +24,6 @@ const sess = {
   })
 };
 
-// TODO: Add a comment describing the functionality of this statement
-// Middleware for using the session package
 app.use(session(sess));
 
 app.engine('handlebars', hbs.engine);
