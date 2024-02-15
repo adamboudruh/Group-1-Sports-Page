@@ -4,16 +4,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>User Registry</title>
+  <title></title>
   <link rel="stylesheet" href="/css/jass.css">
 </head>
 
 <body>
   <header class="display-flex justify-space-between align-center p-2">
-    <h1>
-      User Registry
-    </h1>
-    <!-- TODO: Add a comment describing the functionality of this helper -->
+    <img src="./images/logo.png">
     {{#if logged_in}} 
     {{!-- If logged in, displays logout button in the nav bar for user to click --}}
     <nav>
@@ -28,7 +25,7 @@
       
   </footer>
 
-  <!-- TODO: Add a comment describing the functionality of this helper -->
+  
   {{#if logged_in}}
   {{!-- Imports the logout js file to allow the user to log out if they're logged in, makes the button work--}}
   <script src="/js/logout.js"></script>
