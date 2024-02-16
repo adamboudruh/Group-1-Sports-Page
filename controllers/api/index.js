@@ -5,6 +5,6 @@ const odds = require('./odds')
 
 router.use('/users', userRoutes);
 router.use('/games', gameRoutes);
-router.use('/odds', odds);
+router.use('/odds',)
 
 module.exports = router;
