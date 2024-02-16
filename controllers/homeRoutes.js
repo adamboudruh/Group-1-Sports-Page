@@ -4,7 +4,7 @@ const { User } = require('../models');
 const withAuth = require('../utils/auth');
 
 // checks to see if user is logged in before rendering homepage view
-//router.get('/', withAuth, async (req, res) => {     // comected out for TESTING VIEW purposes
+//router.get('/', withAuth, async (req, res) => {     // commented out for TESTING VIEW purposes
 router.get('/', async (req, res) => {
   try {
     const userData = await User.findAll({ //Creates an array called userData of all the user profiles in ascending order (excluding passwords)
@@ -33,6 +33,14 @@ router.get('/login', (req, res) => {
   }
 
   res.render('login');
+});
+router.get('/signup', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+
+  res.render('signup')
 });
 
 module.exports = router;

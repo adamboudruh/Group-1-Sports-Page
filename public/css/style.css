@@ -36,9 +36,10 @@ body {
     margin-bottom: 1em;
 }
 
-.btn {
+.welcome {
     display: flex;
     justify-content: space-evenly;
+    
  
 }
 .login-btn {
@@ -73,6 +74,7 @@ body {
     width: 12rem;
     font-size: 20px; 
     margin-left: 75px;
+    margin-bottom: 75px;
     
 }
 
@@ -84,4 +86,5 @@ body {
     width: 12rem; 
     font-size: 20px; 
     margin-right: 75px;
+    margin-bottom: 75px;
 }
