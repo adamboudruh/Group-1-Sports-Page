@@ -1,9 +1,11 @@
-const router = require('express').Router();
+const express = require('express');
+const router = express.Router();
 const { User } = require('../models');
 const withAuth = require('../utils/auth');
 
 // checks to see if user is logged in before rendering homepage view
-router.get('/', withAuth, async (req, res) => {
+//router.get('/', withAuth, async (req, res) => {     // comected out for TESTING VIEW purposes
+router.get('/', async (req, res) => {
   try {
     const userData = await User.findAll({ //Creates an array called userData of all the user profiles in ascending order (excluding passwords)
       attributes: { exclude: ['password'] },
