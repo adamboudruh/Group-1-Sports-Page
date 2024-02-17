@@ -1,10 +1,13 @@
-const router = require('express').Router();
-const userRoutes = require('./userRoutes');
-const gameRoutes = require('./gameRoutes');
-const oddsRoutes = require('./oddsRoutes')
+const router = require('express').Router(); // Import the Router class from Express
+const userRoutes = require('./userRoutes'); // Import userRoutes module
+const gameRoutes = require('./gameRoutes'); // Import gameRoutes module
+const oddsRoutes = require('./oddsRoutes'); // Import oddsRoutes module
 
+// Mount the userRoutes under the '/users' path
 router.use('/users', userRoutes);
+// Mount the gameRoutes under the '/games' path
 router.use('/games', gameRoutes);
-router.use('/odds', oddsRoutes)
+// Mount the oddsRoutes under the '/odds' path
+router.use('/odds', oddsRoutes);
 
-module.exports = router;
+module.exports = router; // Export the router module for usage in other files
