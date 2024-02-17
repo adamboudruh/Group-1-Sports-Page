@@ -1,10 +1,10 @@
 const router = require('express').Router();
 const userRoutes = require('./userRoutes');
 const gameRoutes = require('./gameRoutes');
-const odds = require('./odds')
+const oddsRoutes = require('./oddsRoutes')
 
 router.use('/users', userRoutes);
 router.use('/games', gameRoutes);
-router.use('/odds', odds)
+router.use('/odds', oddsRoutes)
 
 module.exports = router;
