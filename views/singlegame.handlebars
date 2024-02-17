@@ -1,0 +1,38 @@
+<h2>{{ game.home_team }} vs {{ game.away_team }}</h2>
+
+<!-- Display odds for the game -->
+{{#if odds}}
+  <h3>Odds:</h3>
+  <ul>
+    {{#each odds}}
+      <li>{{ this }}</li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No odds available</p>
+{{/if}}
+
+<!-- Form to post a new comment -->
+{{#if logged_in}}
+  <form id="comment-form" action="/api/comments/{{ game.id }}/post" method="POST">
+    <textarea name="comment" id="comment" placeholder="Enter your comment"></textarea>
+    <button type="submit">Post Comment</button>
+  </form>
+{{else}}
+  <p>Please log in to post comments</p>
+{{/if}}
+
+<!-- Display existing comments -->
+{{#each comments}}
+  <div>
+    <p>{{ this.content }}</p>
+    {{#if logged_in}}
+      <a href="/comments/{{ this.id }}/edit">Edit</a>
+      <form action="/comments/{{ this.id }}/delete" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    {{/if}}
+  </div>
+{{/each}}
+
+<script src="../public/js/singlegame.js"></script>

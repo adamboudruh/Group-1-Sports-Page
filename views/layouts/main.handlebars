@@ -13,7 +13,7 @@
 
   <body>
     <div class="header">
-      <img src="/images/logo.png" alt="group logo" />
+      <img src="../../public/images/logo.png" alt="group logo" />
       {{#if logged_in}}
         {{! If logged in, displays logout button in the nav bar for user to click }}
         <nav>
@@ -31,7 +31,7 @@
 
     {{#if logged_in}}
       {{! Imports the logout js file to allow the user to log out if they're logged in, makes the button work}}
-      <script src="/js/logout.js"></script>
+      <script src="../../public/js/logout.js"></script>
     {{/if}}
   </body>
 
