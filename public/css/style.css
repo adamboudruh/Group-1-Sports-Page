@@ -1,5 +1,16 @@
+/* @media (min-width: 576px) { ... }
 
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
 
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) { ... } */
 
 body {
    background-color: limegreen; 
@@ -14,16 +25,17 @@ body {
 
 .hero {
     
-    background-image: url('https://media.istockphoto.com/id/467634080/photo/basketball-game.jpg?s=1024x1024&w=is&k=20&c=cq8vC-Ivy3HyL2k_jYurOQgtO-fRMDWmofpA2DL3z30=');
+    background-image: url('/images/landing page image.jpg');
     background-size: cover;
     background-position: center;
-    height: 75vh; /* Adjust the height as needed */
-    color: white;
+    height: 75vh; 
+    color: white; 
     text-align: center;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px; 
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
 
 .hero h1 {
@@ -39,34 +51,32 @@ body {
 .welcome {
     display: flex;
     justify-content: space-evenly;
-    
- 
 }
 .login-btn {
     background: rgb(35, 34, 34);
-    color:limegreen;
-    margin-top: 20px;
+    color:limegreen; 
     height: 4rem;
     width: 12rem;
     font-size: 20px; 
-    margin-left: 200px;
-    
 }
+
 .signup-btn{
     background: rgb(35, 34, 34);
     color: limegreen;
-    margin-top: 20px;
     height: 4rem;
     width: 12rem; 
     font-size: 20px; 
-    margin-right: 200px;
+    
 }
 
 .loggedin {
     display:flex;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
+
+   
 }
-.past-btn {
+/* .past-btn {
     background: rgb(35, 34, 34);
     color:limegreen;
     margin-top: 50px;
@@ -76,7 +86,7 @@ body {
     margin-left: 75px;
     margin-bottom: 75px;
     
-}
+} */
 
 .upcoming-btn {
     background: rgb(35, 34, 34);
@@ -85,6 +95,5 @@ body {
     height: 4rem;
     width: 12rem; 
     font-size: 20px; 
-    margin-right: 75px;
-    margin-bottom: 75px;
 }
+    
