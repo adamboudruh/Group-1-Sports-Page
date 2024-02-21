@@ -14,7 +14,7 @@ body {
 
 .hero {
     
-    background-image: url('https://media.istockphoto.com/id/467634080/photo/basketball-game.jpg?s=1024x1024&w=is&k=20&c=cq8vC-Ivy3HyL2k_jYurOQgtO-fRMDWmofpA2DL3z30=');
+    background-image: url("/images/landing page image.jpg");
     background-size: cover;
     background-position: center;
     height: 75vh; /* Adjust the height as needed */
@@ -65,6 +65,7 @@ body {
 .loggedin {
     display:flex;
     justify-content: space-around;
+
 }
 .past-btn {
     background: rgb(35, 34, 34);
