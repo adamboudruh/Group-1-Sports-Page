@@ -9,9 +9,9 @@ Game.init(
   {
     // Define the 'id' attribute
     id: {
-      type: DataTypes.INTEGER, // Data type is INTEGER
-      allowNull: false, // It cannot be null
-      primaryKey: true, // It is the primary key
+      type: DataTypes.STRING,
+      allowNull: false,
+      primaryKey: true,
     },
     // Define the 'commence_time' attribute
     commence_time: {

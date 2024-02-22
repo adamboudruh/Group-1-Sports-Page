@@ -6,23 +6,21 @@ const gameData = require('./gameData.json'); // Import game data from a JSON fil
 
 // Define a function to seed the database with initial data
 const seedDatabase = async () => {
-  // Synchronize the database schema, dropping all tables if they exist
-  await sequelize.sync({ force: true });
+  try {
+    await sequelize.sync({ force: true });
 
-  // Seed the User table with userData
-  await User.bulkCreate(userData, {
-    individualHooks: true, // Apply model hooks for each user
-    returning: true, // Include the created records in the returned promise value
-  });
+    await User.bulkCreate(userData, {
+      individualHooks: true,
+      returning: true,
+    });
 
-  // Seed the Game table with gameData
   await Game.bulkCreate(gameData, {
-    returning: true, // Include the created records in the returned promise value
-  });
+    returning: true,
+  })
 
-  // Exit the process after seeding the database
   process.exit(0);
-};
+} catch (err) {console.info(err)};
+}
 
 // Call the seedDatabase function to start the seeding process
 seedDatabase();
