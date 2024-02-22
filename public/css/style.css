@@ -24,8 +24,7 @@ body {
 }
 
 .hero {
-    background-image: url('/images/landing page image.jpg';
-    main
+    background-image: url('/images/landing page image.jpg');
     background-size: cover;
     background-position: center;
     height: 75vh; 
