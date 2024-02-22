@@ -24,8 +24,8 @@ body {
 }
 
 .hero {
-    
-    background-image: url('/images/landing page image.jpg');
+    background-image: url('/images/landing page image.jpg';
+    main
     background-size: cover;
     background-position: center;
     height: 75vh; 
@@ -73,9 +73,8 @@ body {
     display:flex;
     justify-content: center;
     align-items: center;
-
-   
 }
+
 /* .past-btn {
     background: rgb(35, 34, 34);
     color:limegreen;
