@@ -1,6 +1,4 @@
 
-
-
 body {
    background-color: limegreen; 
 }
@@ -9,9 +7,8 @@ body {
    justify-content: center;
    margin-top: 100px;
    height: 250px;
-  
-
 }
+
 .img {
  background-size:auto;
 }
@@ -95,6 +92,8 @@ body {
     display:flex;
     justify-content: center;
     align-items: center;
-
 }
-    
+
+.footer {
+    height: 250px;
+}
