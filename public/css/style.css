@@ -1,0 +1,98 @@
+/* @media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) { ... } */
+
+body {
+   background-color: limegreen; 
+}
+.header {
+   display:flex;
+   justify-content: center;
+   margin-top: 100px;
+   height: 250px;
+
+}
+
+.hero {
+    background-image: url('/images/landing page image.jpg';
+    main
+    background-size: cover;
+    background-position: center;
+    height: 75vh; 
+    color: white; 
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.hero h1 {
+    font-size: 3em;
+    margin-bottom: 0.5em;
+}
+
+.hero p {
+    font-size: 1.5em;
+    margin-bottom: 1em;
+}
+
+.welcome {
+    display: flex;
+    justify-content: space-evenly;
+}
+.login-btn {
+    background: rgb(35, 34, 34);
+    color:limegreen; 
+    height: 4rem;
+    width: 12rem;
+    font-size: 20px; 
+}
+
+.signup-btn{
+    background: rgb(35, 34, 34);
+    color: limegreen;
+    height: 4rem;
+    width: 12rem; 
+    font-size: 20px; 
+    
+}
+
+.loggedin {
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .past-btn {
+    background: rgb(35, 34, 34);
+    color:limegreen;
+    margin-top: 50px;
+    height: 4rem;
+    width: 12rem;
+    font-size: 20px; 
+    margin-left: 75px;
+    margin-bottom: 75px;
+    
+} */
+
+.upcoming-btn {
+    background: rgb(35, 34, 34);
+    color: limegreen;
+    margin-top: 50px;
+    height: 4rem;
+    width: 12rem; 
+    font-size: 20px; 
+}
+    

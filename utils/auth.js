@@ -1,11 +1,14 @@
+// Define a middleware function for authorization
 const withAuth = (req, res, next) => {
-  
-  // Authorization function that will run for each route, will redirect to login page if logged_in is false
+  // Check if the user is logged in
   if (!req.session.logged_in) {
-    res.redirect('/login');
+    // If not logged in, redirect to the homepage or login page
+    res.redirect('/homepage'); // You may want to change the redirection destination to the login page
   } else {
+    // If logged in, proceed to the next middleware or route handler
     next();
   }
 };
 
+// Export the withAuth middleware for use in other files
 module.exports = withAuth;

@@ -10,6 +10,7 @@ router.get('/upcoming', async (req, res) => {
 
       const url =new URL(`https://api.the-odds-api.com/v4/sports/basketball_nba/events?apiKey=${apiKey}`);
   
+      // Fetch data from the API
       const response = await fetch(url);
       if (!response.ok) throw new Error('Error in retrieving data.');
       const data = await response.json();
@@ -22,7 +23,7 @@ router.get('/upcoming', async (req, res) => {
       fs.writeFile(filePath, JSON.stringify(data), (err) =>err ? console.log("Error in writing file: "+err) : console.log('Success!')); 
       fs.writeFile(textPath, currentDateTime.toLocaleString(), (err) =>err ? console.log("Error in writing file: "+err) : console.log('Success!')); 
 
-      res.json(data);
+      res.json(data); // Send the retrieved data as JSON response to client
       
     }
     catch (err) { console.info("Error in retrieving data from API: "+err) };
@@ -44,4 +45,4 @@ router.get('/upcoming', async (req, res) => {
     }
   })
 
-  module.exports = router;
+module.exports = router; // Export the router module for usage in other files

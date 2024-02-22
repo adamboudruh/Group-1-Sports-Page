@@ -1,0 +1,45 @@
+<!-- Display the matchup between home team and away team -->
+<h2>{{ game.home_team }} vs {{ game.away_team }}</h2>
+
+<!-- Display odds for the game if available -->
+{{#if odds}}
+  <h3>Odds:</h3>
+  <ul>
+    <!-- Iterate over each odd and display it in a list -->
+    {{#each odds}}
+      <li>{{ this }}</li>
+    {{/each}}
+  </ul>
+{{else}}
+  <!-- If no odds available, display a message -->
+  <p>No odds available</p>
+{{/if}}
+
+<!-- Form to post a new comment if user is logged in -->
+{{#if logged_in}}
+  <form id="comment-form" action="/api/comments/{{ game.id }}/post" method="POST">
+    <textarea name="comment" id="comment" placeholder="Enter your comment"></textarea>
+    <button type="submit">Post Comment</button>
+  </form>
+{{else}}
+  <!-- If user is not logged in, display a message to log in -->
+  <p>Please log in to post comments</p>
+{{/if}}
+
+<!-- Display existing comments -->
+{{#each comments}}
+  <div>
+    <!-- Display the content of each comment -->
+    <p>{{ this.content }}</p>
+    <!-- If user is logged in, show edit and delete options -->
+    {{#if logged_in}}
+      <a href="/comments/{{ this.id }}/edit">Edit</a>
+      <form action="/comments/{{ this.id }}/delete" method="POST">
+        <button type="submit">Delete</button>
+      </form>
+    {{/if}}
+  </div>
+{{/each}}
+
+<!-- Include a JavaScript file for handling events related to this template -->
+<script src="../public/js/singlegame.js"></script>

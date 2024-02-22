@@ -1,10 +1,23 @@
-{{#each users as |user| }}
-<div class="row align-center mb-5">
-  <div class="col-md-6">
-    <h2>{{{get_emoji}}} {{user.name}}</h2>
-  </div>
-  <div class="col-md-6">
-    <h3><a href="mailto:{{user.email}}">{{user.email}}</a></h3>
-  </div>
-</div>
-{{/each}}
+<div class="hero"></div>
+
+<div class="welcome">
+        
+        <a href="/login">
+            <button class="login-btn"> Login</button>
+        </a>
+        <a href="/signup">
+            <button class="signup-btn"> Sign-up</button>
+        
+        </a> 
+</div> 
+<div class="loggedin">
+    {{!-- <a href="/singlegame">
+            <button class="past-btn"> Past</button>
+        </a> --}} 
+    
+        <a href="/singlegame">
+            <button class="upcoming-btn"> Upcoming</button>
+        </a> 
+</div>  
+
+<script src="../public/js/homepage.js"></script>
