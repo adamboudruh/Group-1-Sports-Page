@@ -1,9 +1,10 @@
-const path = require('path'); // Require the 'path' module to work with file and directory paths
-const express = require('express'); // Require the Express framework
-const session = require('express-session'); // Require the express-session middleware
-const exphbs = require('express-handlebars'); // Require the Express Handlebars view engine
-const routes = require('./controllers'); // Require the routes defined in the controllers directory
-const helpers = require('./utils/helpers'); // Require custom helper functions
+const path = require('path');
+const express = require('express');
+const session = require('express-session');
+const exphbs = require('express-handlebars');
+const routes = require('./controllers');
+const helpers = require('./utils/helpers');
+const cron = require('node-cron');
 
 const sequelize = require('./config/connection'); // Require the Sequelize connection
 
@@ -37,6 +38,11 @@ app.use(express.static(path.join(__dirname, 'public'))); // Serve static files f
 
 // Use the routes defined in the controllers
 app.use(routes);
+
+cron.schedule(' * * * * *', () => {
+  // This function will be executed every minute
+  console.log('Running cron job...');
+});
 
 // Sync the Sequelize models with the database and start the server
 sequelize.sync({ force: false }).then(() => {
