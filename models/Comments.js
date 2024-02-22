@@ -21,7 +21,7 @@ Comments.init(
       },
       // Define the 'game_id' attribute
       game_id: {
-        type: DataTypes.INTEGER, // Data type is INTEGER
+        type: DataTypes.STRING, // Data type is STRING
         allowNull: false, // It cannot be null
         references: { // It references the 'id' attribute of the 'game' model
           model: 'game',
