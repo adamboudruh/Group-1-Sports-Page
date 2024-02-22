@@ -1,16 +1,5 @@
-/* @media (min-width: 576px) { ... }
 
-// Medium devices (tablets, 768px and up)
-@media (min-width: 768px) { ... }
 
-// Large devices (desktops, 992px and up)
-@media (min-width: 992px) { ... }
-
-// X-Large devices (large desktops, 1200px and up)
-@media (min-width: 1200px) { ... }
-
-// XX-Large devices (larger desktops, 1400px and up)
-@media (min-width: 1400px) { ... } */
 
 body {
    background-color: limegreen; 
@@ -20,12 +9,15 @@ body {
    justify-content: center;
    margin-top: 100px;
    height: 250px;
+  
 
+}
+.img {
+ background-size:auto;
 }
 
 .hero {
-    background-image: url('/images/landing page image.jpg';
-    main
+    background-image: url('/images/landing page image.jpg');
     background-size: cover;
     background-position: center;
     height: 75vh; 
@@ -38,12 +30,15 @@ body {
     margin-bottom: 50px;
 }
 
-.hero h1 {
-    font-size: 3em;
+.hero-text h1 {
+    font-size: 2.5em;
     margin-bottom: 0.5em;
+    color: azure;
+    opacity: 0.7;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.hero p {
+.hero-text p {
     font-size: 1.5em;
     margin-bottom: 1em;
 }
@@ -94,5 +89,12 @@ body {
     height: 4rem;
     width: 12rem; 
     font-size: 20px; 
+}
+
+.form-group{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+
 }
     
