@@ -1,15 +1,46 @@
 <!-- Display the matchup between home team and away team -->
-<h2>{{ game.home_team }} vs {{ game.away_team }}</h2>
+<h2>{{ odds.home_team }} vs {{ odds.away_team }}</h2>
+
+{{!-- Date of game --}}
 
 <!-- Display odds for the game if available -->
+
+
+  
+
 {{#if odds}}
   <h3>Odds:</h3>
-  <ul>
-    <!-- Iterate over each odd and display it in a list -->
-    {{#each odds}}
-      <li>{{ this }}</li>
-    {{/each}}
-  </ul>
+    <!-- Display each of the odds, including which team each line pertains to -->
+    {{#with (getBookmaker "draftkings" odds)}}
+    {{#if this}}
+      <h3>DraftKings Odds:</h3>
+      <ul>
+        {{#each markets}}
+        {{!-- Would like to have a show explanation button next to each bet, and subsequently a hide explanation --}}
+          <div>
+            {{#when key "===" "h2h"}}
+              <h4>HEAD TO HEAD</h4> 
+              {{!-- <p>This is a Head to Head market, sometimes reffered to as the moneyline. It represents the odds for one team to beat another without considering point spreads. Lower number means they're more likely to win</p> --}}
+            {{/when}}
+            {{#when key "===" "spreads"}}
+              <h4>POINT SPREADS</h4>
+              {{!-- <p>This is a Point Spreads market. It indicates the handicap given to the underdog and the advantage given to the favorite.</p> --}}
+            {{/when}}
+            {{#when key "===" "totals"}}
+              <h4>TOTALS</h4>
+              {{!-- <p>This is a Totals market. It predicts the total combined score of both teams in a game.</p> --}}
+            {{/when}}
+            <ul>
+                {{#each outcomes}}
+                  <li>{{name}} - {{price}}  {{#if point}} (Point: {{point}}) {{/if}} </li>
+                {{/each}}
+            </ul>
+          </div>
+        {{/each}}
+
+      </ul>
+    {{/if}}
+  {{/with}}
 {{else}}
   <!-- If no odds available, display a message -->
   <p>No odds available</p>

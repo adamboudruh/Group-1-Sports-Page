@@ -34,15 +34,15 @@ app.engine('handlebars', hbs.engine); // Set Handlebars as the template engine
 app.set('view engine', 'handlebars'); // Set the view engine to Handlebars
 app.use(express.json()); // Parse JSON bodies
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded bodies
-app.use(express.static(path.join(__dirname, 'public'))); // Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, './public'))); // Serve static files from the 'public' directory
 
 // Use the routes defined in the controllers
 app.use(routes);
 
-cron.schedule(' * * * * *', () => {
-  // This function will be executed every minute
-  console.log('Running cron job...');
-});
+// cron.schedule(' * * * * *', () => {
+//   // This function will be executed every minute
+//   console.log('Running cron job...');
+// });
 
 // Sync the Sequelize models with the database and start the server
 sequelize.sync({ force: false }).then(() => {

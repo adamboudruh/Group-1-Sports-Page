@@ -4,10 +4,8 @@ const fs = require('fs');
 const path = require('path');
 const { Game } = require('../../models');
 
-router.get('/load', async (req, res) => {
+router.get('/load', async (req, res) => { //This code makes a call to the sports api that we're using and loads a JSON file in the seeds folder of all the upcoming games
     try {
-      //Add some code that automatically takes todays day and adds a day to it
-
       const url =new URL(`https://api.the-odds-api.com/v4/sports/basketball_nba/events?apiKey=${apiKey}`);
   
       // Fetch data from the API
@@ -30,13 +28,13 @@ router.get('/load', async (req, res) => {
 router.get('/upcoming', async (req, res) => {
   try{
     const upcomingGameData = await Game.findAll();
-    
     const upcomingGames = upcomingGameData.map(game => game.get({plain: true}));
-    console.log(upcomingGames);
+    // console.log(upcomingGames);
 
     res.render('landingpage', {
       upcomingGames,
     })
+    console.log("Rendering landing page...");
   }
   catch (err) {
     console.error(err);
@@ -45,20 +43,26 @@ router.get('/upcoming', async (req, res) => {
 
 
 // Route to get a game object containing all of a game's info and render it
-router.get('/singlegame/:game_id', async (req, res) => {
-    try{
-      const gameData = await Game.findByPk(req.params.game_id);
+// router.get('/singlegame/:game_id', async (req, res) => {
+//     try{
+//       const gameId = req.params.game_id;
+//       const gameData = await Game.findByPk(gameId); // locates the game in the table using the id that is passed as a query parameter
       
-      const game = gameData.get({ plain: true });
-      console.log(game);
+//       const game = gameData.get({ plain: true });
+//       console.log(game);
 
-      res.render('singlegame', {
-        game,
-      })
-    }
-    catch (err) {
-      console.error(err);
-    }
-  })
+//       const response = await fetch(`/api/odds/${gameId}`);
+//       const oddsData = await response.json();
+//       const odds = oddsData.map(line => line.get({plain: true}));
+
+//       res.render('singlegame', {
+//         game,
+//         odds
+//       })
+//     }
+//     catch (err) {
+//       console.error(err);
+//     }
+// })
 
 module.exports = router; // Export the router module for usage in other files
