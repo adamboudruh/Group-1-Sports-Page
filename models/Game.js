@@ -7,7 +7,7 @@ class Game extends Model {}
 Game.init(
   {
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
     },

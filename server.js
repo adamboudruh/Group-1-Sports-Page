@@ -4,6 +4,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
+const cron = require('node-cron');
 
 const sequelize = require('./config/connection');
 
@@ -34,6 +35,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(routes);
+
+cron.schedule(' * * * * *', () => {
+  // This function will be executed every minute
+  console.log('Running cron job...');
+});
 
 sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening'));

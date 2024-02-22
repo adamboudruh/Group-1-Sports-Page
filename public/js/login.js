@@ -22,6 +22,16 @@ const loginFormHandler = async (event) => {
   }
 };
 
+const buttons = document.querySelectorAll('.game-button');
+buttons.forEach(button => {
+  button.addEventListener('click', async () => {
+    let id = this.getAttribute('data-id');
+    const response = await fetch(`/api/game/:${id}`);
+    if (response.ok) { console.log('Success! Taken to that game`s page') }
+    else alert("ERROR! Idk what happened");
+  })
+})
+
 document
   .querySelector('.login-form')
   .addEventListener('submit', loginFormHandler);
