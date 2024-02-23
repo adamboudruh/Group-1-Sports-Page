@@ -48,8 +48,11 @@ router.post('/signup', async (req, res) => {
       password: req.body.password,
     });
 
+    console.info(`User of id ${dbUserData.id} has been created`);
+
     req.session.save(() => {
-      req.session.loggedIn = true;
+      req.session.user_id = dbUserData.id;
+      req.session.logged_In = true;
       res.status(200).json(dbUserData);
     });
   } catch (err) {
