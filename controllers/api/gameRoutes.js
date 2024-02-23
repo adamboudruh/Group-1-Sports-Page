@@ -33,6 +33,7 @@ router.get('/upcoming', async (req, res) => {
 
     res.render('landingpage', {
       upcomingGames,
+      logged_In: req.session.logged_In,
     })
     console.log("Rendering landing page...");
   }
