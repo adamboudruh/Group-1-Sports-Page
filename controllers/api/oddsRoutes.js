@@ -20,6 +20,7 @@ router.get('/:gameId', async (req, res) => {
         console.info(game);
 
         res.render('singlegame', {
+            logged_in: req.session.logged_in,
             odds
         })
 
