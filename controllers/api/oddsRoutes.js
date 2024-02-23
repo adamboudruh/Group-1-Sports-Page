@@ -1,6 +1,8 @@
 const router = require('express').Router(); // Import the Router class from Express
 const apiKey = process.env.API_KEY; // Retrieve the API key from environment variables
 const { Game } = require('../../models');
+const { User } = require('../../models');
+const { Comments } = require('../../models');
 
 let comments = []; // Array to store comments
 
@@ -19,6 +21,8 @@ router.get('/:gameId', async (req, res) => {
         const game = gameData.get({ plain: true });
         console.info(game);
 
+        console.info(`User of id ${req.session.user_id} is viewing this page`);
+
         res.render('singlegame', {
             logged_in: req.session.logged_in,
             odds
@@ -33,13 +37,19 @@ router.get('/:gameId', async (req, res) => {
 });
 
 // Route to post a comment to a selected game ID
-router.post('/:gameId/comments', (req, res) => {
+router.post('/:gameId/comments', async (req, res) => {
     try {
         const gameId = req.params.gameId; // Extract the game ID from request parameters
-        const { comment } = req.body; // Extract the comment from request body
-        
+        const { body } = req.body; // Extract the comment from request body
+        console.log(`Posting comment with body: ${comment}`);
+        const userID = req.session.user_id;
+
         // Add the comment to the in-memory storage
-        comments.push({ gameId, comment });
+        const comment = await Comments.create({
+            content: body,
+            game_id: gameId,
+            user_id: userID,
+          });
 
         // Send success response
         res.status(201).json({ message: 'Comment added successfully' });
