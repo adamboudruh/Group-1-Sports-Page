@@ -3,8 +3,9 @@ const apiKey = process.env.API_KEY;
 const fs = require('fs');
 const path = require('path');
 const { Game } = require('../../models');
+const gameData = require('./../../seeds/gameData.json');
 
-router.get('/load', async (req, res) => { //This code makes a call to the sports api that we're using and loads a JSON file in the seeds folder of all the upcoming games
+router.get('/reloadgames', async (req, res) => { //This code makes a call to the sports api that we're using and loads a JSON file in the seeds folder of all the upcoming games
     try {
       const url =new URL(`https://api.the-odds-api.com/v4/sports/basketball_nba/events?apiKey=${apiKey}`);
   
@@ -19,6 +20,15 @@ router.get('/load', async (req, res) => { //This code makes a call to the sports
       const textPath = path.resolve(__dirname, '../../seeds/lastUpdated.txt');
       fs.writeFile(filePath, JSON.stringify(data), (err) =>err ? console.log("Error in writing file: "+err) : console.log('Success!')); 
       fs.writeFile(textPath, currentDateTime.toLocaleString(), (err) =>err ? console.log("Error in writing file: "+err) : console.log('Success!')); 
+      
+      await Game.destroy({
+        where: {},
+        truncate: false,
+        cascade: false,
+      });
+      await Game.bulkCreate(gameData, {
+        returning: true,
+      })
 
       res.json(data); // Send the retrieved data as JSON response to client
     }
@@ -26,6 +36,7 @@ router.get('/load', async (req, res) => { //This code makes a call to the sports
   });
 
 router.get('/upcoming', async (req, res) => {
+  console.log("UPCOMING!!");
   try{
     const upcomingGameData = await Game.findAll();
     const upcomingGames = upcomingGameData.map(game => game.get({plain: true}));

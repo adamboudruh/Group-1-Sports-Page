@@ -21,16 +21,8 @@ module.exports = {
             '!==': function(l,r) { return l != r; }
         }
         const result = operators[operator](operand_1,operand_2);
+        
         if (result) return options.fn(this);
         else  return options.inverse(this);
     }
 };
-
-// {{!-- <li>
-//     <strong>{{key}}</strong>
-//     <ul>
-//       {{#each outcomes}}
-//         <li>{{ name }}: {{ price }}</li>
-//       {{/each}}
-//     </ul>
-//   </li> --}}
