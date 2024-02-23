@@ -1,5 +1,4 @@
 
-
 <div class = "singles-game-container">
 <!-- Display the matchup between home team and away team -->
 <div class = "teams-info-container">
@@ -7,6 +6,9 @@
 </div>
 
 {{!-- Date of game --}}
+
+<!-- Display odds for the game if available -->
+
 
 {{#if odds}}
     <!-- Display each of the odds, including which team each line pertains to -->
@@ -29,7 +31,7 @@
             {{/when}}
             <div class ="outcome-container">
                 {{#each outcomes}}
-                  <li class="list">{{name}} - {{price}}  {{#if point}} (Point: {{point}}) {{/if}} </li>
+                  <div class="list">{{name}} - {{price}}  {{#if point}} (Point: {{point}}) {{/if}} </div>
                 {{/each}}
             </div>
           </div>

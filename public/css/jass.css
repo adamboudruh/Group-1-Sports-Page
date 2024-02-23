@@ -932,7 +932,8 @@ a:hover {
 }
 
 .bg-light {
-  background-color: #d9e9e8 !important;
+    text-align: right;
+    background-color: limegreen !important;
 }
 
 .bg-dark {
