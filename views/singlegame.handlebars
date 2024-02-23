@@ -53,19 +53,26 @@
 {{/if}}
 
 <!-- Display existing comments -->
-{{#each comments}}
-  <div>
-    <!-- Display the content of each comment -->
-    <p>{{ this.content }}</p>
-    <!-- If user is logged in, show edit and delete options -->
-    {{#if logged_in}}
-      <a href="/comments/{{ this.id }}/edit">Edit</a>
-      <form action="/comments/{{ this.id }}/delete" method="POST">
-        <button type="submit">Delete</button>
-      </form>
-    {{/if}}
-  </div>
-{{/each}}
+{{#if comments}}
+  {{#each comments}}
+      <div>
+      <!-- Display the content of each comment -->
+        <p>{{ this.content }}</p>
+      <!-- If user is logged in, show edit and delete options -->
+          {{#if ../logged_in}}
+            <button id="delete-button" 
+              data-id="{{this.id}}"
+              data-user="{{this.user_id}}"
+              >Delete</button>
+            {{!-- <button href='/api/odds/{{this.game_id}}/comments/{{this.id}}'>Edit</button> --}}
+          {{/if}}
+          
+      </div>
+  {{/each}}
+{{else}}
+  <h1>NO COMMENTS</h1>
+{{/if}}
+
 
 <!-- Include a JavaScript file for handling events related to this template -->
 <script src="/js/singlegame.js"></script>

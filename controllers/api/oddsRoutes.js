@@ -20,12 +20,16 @@ router.get('/:gameId', async (req, res) => {
         const gameData = await Game.findByPk(gameId); // locates the game in the table using the id that is passed as a query parameter
         const game = gameData.get({ plain: true });
         console.info(game);
+        const commentData = await Comments.findAll({ where: { game_id: gameId } });
+        const comments = commentData.map(comment => comment.get({plain: true}));
 
         console.info(`User of id ${req.session.user_id} is viewing this page`);
 
         res.render('singlegame', {
             logged_in: req.session.logged_in,
-            odds
+            user_id: req.session.user_id,
+            odds,
+            comments
         })
 
         // Send the retrieved data as JSON response to client
@@ -81,14 +85,25 @@ router.put('/:gameId/comments/:commentId', (req, res) => {
 });
 
 // Route to delete a selected comment based on comment ID
-router.delete('/:gameId/comments/:commentId', (req, res) => {
+router.delete('/delete/:gameId/:userId/:commentId', async (req, res) => {
+    console.log("Deleting...");
     try {
         const gameId = req.params.gameId; // Extract the game ID from request parameters
         const commentId = req.params.commentId; // Extract the comment ID from request parameters
+        const userId = req.params.userId; // Extract the user ID from request parameters
 
-        // Find the comment by ID and remove it
-        comments = comments.filter(c => !(c.gameId === gameId && c.commentId === commentId));
-        res.json({ message: 'Comment deleted successfully' }); // Send success response
+        console.log(`Comment ID: ${userId}\nYour ID: ${req.session.user_id}`)
+
+        if (userId == req.session.user_id) {
+            const deletedComments = await Comments.destroy({
+                where: {
+                  id: commentId, // Delete the comment with this id
+                },
+              });
+            res.json({ message: 'Comment deleted successfully' });
+        }
+        else { console.log("That's not your comment!"); }
+
     } catch (error) {
         console.error('Error:', error); // Log any errors occurred during the process
         res.status(500).json({ error: 'Internal server error' }); // Send an error response
