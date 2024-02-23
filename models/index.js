@@ -4,10 +4,10 @@ const Game = require('./Game'); // Import the Game model
 
 // Define associations between models
 // User and Game association
-// User.belongsTo(Game, { 
-//     foreignKey: 'game_id' }); // Each user belongs to one game
-// Game.hasMany(User, { 
-//     foreignKey: 'game_id' }); // Each game can have multiple users
+User.belongsTo(Game, { 
+    foreignKey: 'game_id' }); // Each user belongs to one game
+Game.hasMany(User, { 
+    foreignKey: 'game_id' }); // Each game can have multiple users
 
 // Comments and Game association
 Comments.belongsTo(Game, { 

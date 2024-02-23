@@ -95,5 +95,6 @@ body {
 }
 
 .footer {
-    height: 250px;
+    display: inline-block;
+    margin-top: 20%;
 }
