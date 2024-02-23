@@ -1,5 +1,6 @@
 const router = require('express').Router(); // Import the Router class from Express
 const apiKey = process.env.API_KEY; // Retrieve the API key from environment variables
+const { Game } = require('../../models');
 
 let comments = []; // Array to store comments
 
@@ -9,13 +10,21 @@ router.get('/:gameId', async (req, res) => {
         const gameId = req.params.gameId; // Extract the game ID from request parameters
         
         // Fetch odds for the specified game ID using the API
-        const response = await fetch(`https://api.the-odds-api.com/v4/sports/basketball_nba/odds/?apiKey=${apiKey}&markets=h2h,spreads,totals&game=${gameId}`);
+        const response = await fetch(`https://api.the-odds-api.com/v4/sports/basketball_nba/events/${gameId}/odds/?apiKey=${apiKey}&markets=h2h,spreads,totals&regions=us`);
         if (!response.ok) throw new Error('Error in retrieving data'); // Throw an error if response is not ok
-        const data = await response.json(); // Parse the JSON response
-        console.info(data); // Log the retrieved data to console
+        const odds = await response.json(); // Parse the JSON response
+        console.info(odds); // Log the retrieved data to console
+
+        const gameData = await Game.findByPk(gameId); // locates the game in the table using the id that is passed as a query parameter
+        const game = gameData.get({ plain: true });
+        console.info(game);
+
+        res.render('singlegame', {
+            odds
+        })
 
         // Send the retrieved data as JSON response to client
-        res.json(data);
+        // res.json(data);
     } catch (error) {
         console.error('Error:', error); // Log any errors occurred during the process
         res.status(500).json({ error: 'Internal server error' }); // Send an error response
