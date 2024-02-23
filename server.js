@@ -5,6 +5,7 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const helpers = require('./utils/helpers');
 const cron = require('node-cron');
+const {loadNewGames} = require('./public/js/homepage');
 
 const sequelize = require('./config/connection'); // Require the Sequelize connection
 
@@ -39,10 +40,10 @@ app.use(express.static(path.join(__dirname, './public'))); // Serve static files
 // Use the routes defined in the controllers
 app.use(routes);
 
-// cron.schedule(' * * * * *', () => {
-//   // This function will be executed every minute
-//   console.log('Running cron job...');
-// });
+cron.schedule(' 30 3 * * *', async () => {
+  console.log("Reloading game data"); //Runs every day at 3:30 AM
+  loadNewGames();
+});
 
 // Sync the Sequelize models with the database and start the server
 sequelize.sync({ force: false }).then(() => {
