@@ -9,6 +9,7 @@
 
 <!-- Display odds for the game if available -->
 
+
 {{#if odds}}
     <!-- Display each of the odds, including which team each line pertains to -->
     {{#with (getBookmaker "draftkings" odds)}}
@@ -46,30 +47,36 @@
 
 <!-- Form to post a new comment if user is logged in -->
 {{#if logged_in}}
-  <form id="comment-form" action="/api/comments/{{ game.id }}/post" method="POST">
+  <form id="comment-form" >
     <textarea name="comment" id="comment" placeholder="Enter your comment"></textarea>
-    <button type="submit">Post Comment</button>
   </form>
+  <button id="post-comment">Post Comment</button>
 {{else}}
   <!-- If user is not logged in, display a message to log in -->
   <p>Please log in to post comments</p>
 {{/if}}
 
 <!-- Display existing comments -->
-{{#each comments}}
-  <div>
-    <!-- Display the content of each comment -->
-    <p>{{ this.content }}</p>
-    <!-- If user is logged in, show edit and delete options -->
-    {{#if logged_in}}
-      <a href="/comments/{{ this.id }}/edit">Edit</a>
-      <form action="/comments/{{ this.id }}/delete" method="POST">
-        <button type="submit">Delete</button>
-      </form>
-    {{/if}}
-  </div>
-{{/each}}
-</div>
+{{#if comments}}
+  {{#each comments}}
+      <div>
+      <!-- Display the content of each comment -->
+        <p>{{ this.content }}</p>
+      <!-- If user is logged in, show edit and delete options -->
+          {{#if ../logged_in}}
+            <button id="delete-button" 
+              data-id="{{this.id}}"
+              data-user="{{this.user_id}}"
+              >Delete</button>
+            {{!-- <button href='/api/odds/{{this.game_id}}/comments/{{this.id}}'>Edit</button> --}}
+          {{/if}}
+          
+      </div>
+  {{/each}}
+{{else}}
+  <h1>NO COMMENTS</h1>
+{{/if}}
+
 
 <!-- Include a JavaScript file for handling events related to this template -->
 <script src="/js/singlegame.js"></script>
