@@ -1,5 +1,10 @@
+
+
+<div class = "singles-game-container">
 <!-- Display the matchup between home team and away team -->
-<h2>{{ odds.home_team }} vs {{ odds.away_team }}</h2>
+<div class = "teams-info-container">
+  <h2>{{ odds.home_team }} vs {{ odds.away_team }}</h2>
+</div>
 
 {{!-- Date of game --}}
 
@@ -9,36 +14,33 @@
   
 
 {{#if odds}}
-  <h3>Odds:</h3>
     <!-- Display each of the odds, including which team each line pertains to -->
     {{#with (getBookmaker "draftkings" odds)}}
     {{#if this}}
-      <h3>DraftKings Odds:</h3>
-      <ul>
+      <div class="list-items-container">
         {{#each markets}}
         {{!-- Would like to have a show explanation button next to each bet, and subsequently a hide explanation --}}
           <div>
             {{#when key "===" "h2h"}}
-              <h4>HEAD TO HEAD</h4> 
               {{!-- <p>This is a Head to Head market, sometimes reffered to as the moneyline. It represents the odds for one team to beat another without considering point spreads. Lower number means they're more likely to win</p> --}}
             {{/when}}
             {{#when key "===" "spreads"}}
-              <h4>POINT SPREADS</h4>
+              <h4 class = "font-dec">SPREAD</h4>
               {{!-- <p>This is a Point Spreads market. It indicates the handicap given to the underdog and the advantage given to the favorite.</p> --}}
             {{/when}}
             {{#when key "===" "totals"}}
-              <h4>TOTALS</h4>
+              <h4 class = "font-dec">TOTAL</h4>
               {{!-- <p>This is a Totals market. It predicts the total combined score of both teams in a game.</p> --}}
             {{/when}}
-            <ul>
+            <div class ="outcome-container">
                 {{#each outcomes}}
-                  <li>{{name}} - {{price}}  {{#if point}} (Point: {{point}}) {{/if}} </li>
+                  <li class="list">{{name}} - {{price}}  {{#if point}} (Point: {{point}}) {{/if}} </li>
                 {{/each}}
-            </ul>
+            </div>
           </div>
         {{/each}}
 
-      </ul>
+      </div>
     {{/if}}
   {{/with}}
 {{else}}
@@ -71,6 +73,7 @@
     {{/if}}
   </div>
 {{/each}}
+</div>
 
 <!-- Include a JavaScript file for handling events related to this template -->
 <script src="../public/js/singlegame.js"></script>
