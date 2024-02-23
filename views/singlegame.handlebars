@@ -3,11 +3,6 @@
 
 {{!-- Date of game --}}
 
-<!-- Display odds for the game if available -->
-
-
-  
-
 {{#if odds}}
   <h3>Odds:</h3>
     <!-- Display each of the odds, including which team each line pertains to -->
@@ -48,10 +43,10 @@
 
 <!-- Form to post a new comment if user is logged in -->
 {{#if logged_in}}
-  <form id="comment-form" action="/api/comments/{{ game.id }}/post" method="POST">
+  <form id="comment-form" >
     <textarea name="comment" id="comment" placeholder="Enter your comment"></textarea>
-    <button type="submit">Post Comment</button>
   </form>
+  <button id="post-comment">Post Comment</button>
 {{else}}
   <!-- If user is not logged in, display a message to log in -->
   <p>Please log in to post comments</p>

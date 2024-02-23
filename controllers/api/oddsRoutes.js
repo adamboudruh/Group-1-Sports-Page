@@ -40,8 +40,8 @@ router.get('/:gameId', async (req, res) => {
 router.post('/:gameId/comments', async (req, res) => {
     try {
         const gameId = req.params.gameId; // Extract the game ID from request parameters
-        const { body } = req.body; // Extract the comment from request body
-        console.log(`Posting comment with body: ${comment}`);
+        const body = req.body.comment; // Extract the comment from request body
+        console.log(`Posting comment with body: ${body}`);
         const userID = req.session.user_id;
 
         // Add the comment to the in-memory storage
