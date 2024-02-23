@@ -39,6 +39,25 @@ router.post('/login', async (req, res) => {
   }
 });
 
+router.post('/signup', async (req, res) => {
+  try {
+    console.info("POST Route called... Attempting to sign up!");
+    const dbUserData = await User.create({
+      name: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    req.session.save(() => {
+      req.session.loggedIn = true;
+      res.status(200).json(dbUserData);
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json(err);
+  }
+});
+
 // Route to handle user logout
 router.post('/logout', (req, res) => {
   // Check if the user is logged in
@@ -52,5 +71,7 @@ router.post('/logout', (req, res) => {
     res.status(404).end();
   }
 });
+
+
 
 module.exports = router; // Export the router module for usage in other files

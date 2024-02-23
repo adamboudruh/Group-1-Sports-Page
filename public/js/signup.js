@@ -1,11 +1,13 @@
 // Define an asynchronous function to handle the signup form submission
 const signUpFormHandler = async (event) => {
+  console.info("HELLOOO");
   event.preventDefault(); // Prevent the default form submission behavior
 
   // Get the username, email, and password values from the signup form
   const username = document.querySelector('#username-signup').value.trim();
   const email = document.querySelector('#email-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
+  console.info(`Creating new account with username ${username}, email ${email}, and pword ${password}`);
 
   // Check if username, email, and password are provided
   if (username && email && password) {
