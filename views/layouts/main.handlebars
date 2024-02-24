@@ -16,7 +16,7 @@
     
 <nav class="navbar navbar-light bg-light">
   <a class="navbar-brand" href="/login">Login</a>
-  <a class="navbar-brand" href="#">Logout</a>
+  <a class="navbar-brand" id="logout-link" href="#">Logout</a>
 </nav>
     {{!--  --}}
 
@@ -25,12 +25,12 @@
         <img src="/images/logo.png" class="img-fluid" alt="group logo" />
       </a>
       
-      {{#if logged_in}}
+      {{!-- {{#if logged_in}}
         {{! If logged in, displays logout button in the nav bar for user to click }}
         <nav>
           <button class="btn" id="logout">logout</button>
         </nav>
-      {{/if}}
+      {{/if}} --}}
     </div>
 
     <main class="container container-fluid mt-5">
@@ -46,7 +46,7 @@
     {{/if}}
 
 
-    
+
   </body>
 
 </html>
