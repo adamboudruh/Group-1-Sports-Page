@@ -65,9 +65,10 @@ body {
 }
 
 .loggedin {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 100px;
 }
 
 /* .past-btn {
