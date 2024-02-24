@@ -432,6 +432,21 @@ a:hover {
   text-decoration: underline;
 }
 
+.navbar-brand {
+  color: #000000;
+  text-decoration: none;
+  margin-left: 30px;
+  margin-right: 30px;
+  font-size: 22px;
+  text-decoration: underline;
+}
+
+.navbar-brand:hover {
+  color: #065b83;
+  text-decoration: underline;
+}
+
+
 /* HEIGHT / WIDTH UTILS */
 .w-100 {
   width: 100%;
