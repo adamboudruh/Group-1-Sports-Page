@@ -2,37 +2,49 @@
 
 ## Description
 
-AS A USER 
-*I WANT TO be able to see scores and odds of all current, upcoming and past sporting events 
-SO THAT I can interact with other website users and talk about sporting events, news and bets of my favorite sports and sports teams
+Have you ever craved a one-stop destination for effortlessly accessing game odds and engaging in vibrant discussions with fellow enthusiasts? Introducing our platform, where you can seamlessly navigate through upcoming game probabilities and dive into dynamic conversations with like-minded fans. Elevate your sports experience with us and never miss a beat in the world of game predictions and passionate discourse.
 
+## Usage
+Whenever you access the homepage/landing page,  just click sign up button under the body image and sign up, password must be 8 characters long. Once you're logged in you will have access to upcoming games which then displays the odds, scores, and spread. You are also able to leave a comment on the game as well.
 
 ## Table of Contents
-
-- [Installation](#installation)
+- [Description](#description)
 - [Usage](#usage)
 - [Credits](#credits)
 - [License](#license)
 
-## Usage
-
-
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
     ```md
-    ![alt text](assets/images/screenshot.png)
+    ![screenshot](/public/images/image.ss.png)
     ```
 
 ## Credits
 
-MEMBER CONTACT INFO
-Cameron Bursch cammichbursc@gmail.com
-Roderick Hughey Rlhughey70@gmail.com
-Somphang Chanleuxay somphang.chanleuxay@gmail.com
-Adam Boudraa adamboudraa@gmail.com
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
+-Member Contact Info & Github
+Cameron Bursch cammichbursc@gmail.com / https://github.com/cbursch13
+Roderick Hughey Rlhughey70@gmail.com / https://github.com/Midas24k
+Somphang Chanleuxay somphang.chanleuxay@gmail.com / https://github.com/somphangchanleuxay
+Adam Boudraa adamboudraa@gmail.com / https://github.com/adamboudruh
 
 ## License
+MIT License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+Copyright (c) [2024] [Adam Boudraa, Cameron Bursch, Roderick Hughey, Somphang Chanleuxay]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
