@@ -28,6 +28,7 @@ body {
     align-items: center;
     margin-top: 50px;
     margin-bottom: 50px;
+    box-shadow: 10px 10px 5px black ;
 }
 
 .hero-text h1 {
@@ -68,6 +69,7 @@ body {
     display:flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 60px;
 }
 
 /* .past-btn {
