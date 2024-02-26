@@ -57,8 +57,34 @@ const deleteHandler = async (event) => {
     
 };
 
+// const editHandler = async (event) => {
+//   event.preventDefault(); // Prevent the default form submission behavior
+//   console.log("BUTTON CLICKED!");
+
+//   const newText = prompt("Enter new comment");
+
+
+//     const gameID = window.location.pathname.split('/').pop();
+//     const commentID = event.target.dataset.id;
+//     const userID = event.target.dataset.user;
+//       const response = await fetch(`/api/odds/edit//${commentID}`, {
+//         method: 'Put', // Use the DELETE method
+//         body: JSON.stringify(newText);
+//         headers: { 'Content-Type': 'application/json' }, // Set request headers
+//       });
+//       // Check if the response is ok
+//       if (response.ok) {
+//         // If posting comment is successful, reload the page
+//         console.log("Your comment has been deleted");
+//       } else {
+//         // If posting comment fails, display an alert message
+//         console.log('Failed to delete');
+//       }
+    
+// };
+
 // Add an event listener to the comment form submit event
 document.querySelector('#post-comment').addEventListener('click', commentFormHandler);
 document.querySelector('#delete-button').addEventListener('click', deleteHandler);
-
+document.querySelector('#edit-button').addEventListener('click', editHandler);
 //href='/api/odds/delete/{{this.game_id}}/comments/{{this.id}}'

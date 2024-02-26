@@ -20,12 +20,11 @@ router.get('/reloadgames', async (req, res) => { //This code makes a call to the
       const textPath = path.resolve(__dirname, '../../seeds/lastUpdated.txt');
       fs.writeFile(filePath, JSON.stringify(data), (err) =>err ? console.log("Error in writing file: "+err) : console.log('Success!')); 
       fs.writeFile(textPath, currentDateTime.toLocaleString(), (err) =>err ? console.log("Error in writing file: "+err) : console.log('Success!')); 
-      
-      // await Game.destroy({
-      //   where: {},
-      //   truncate: false,
-      //   cascade: false,
-      // });
+      await Game.destroy({
+        where: {},
+        truncate: false,
+        cascade: false,
+      });
       await Game.bulkCreate(gameData, {
         returning: true,
       })
