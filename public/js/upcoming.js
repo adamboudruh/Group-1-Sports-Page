@@ -1,5 +1,6 @@
 // Function to handle game button click
 const handleGameButtonClick = (event) => {
+    console.log("BUTTON CLICKED!!!");
     // Prevent default form submission behavior
     event.preventDefault();
   
@@ -7,7 +8,7 @@ const handleGameButtonClick = (event) => {
     const gameId = event.target.dataset.id;
   
     // Redirect the user to the single game odds page
-    window.location.href =`api/games/${gameId}`;
+    window.location.href =`api/odds/${gameId}`;
   };
   
   // Add event listeners to game buttons

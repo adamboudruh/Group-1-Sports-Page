@@ -21,7 +21,7 @@ const sess = {
   secret: 'Super secret secret', // Secret used to sign the session ID cookie
   cookie: {}, // Additional cookie options can be specified here
   resave: false, // Prevents the session from being saved back to the session store if it wasn't modified during the request
-  saveUninitialized: true, // Forces a session that is "uninitialized" to be saved to the store
+  saveUninitialized: false, // Forces a session that is "uninitialized" to be saved to the store
   store: new SequelizeStore({
     db: sequelize // Store session data in the Sequelize database
   })
@@ -46,6 +46,6 @@ cron.schedule(' 30 3 * * *', async () => {
 });
 
 // Sync the Sequelize models with the database and start the server
-sequelize.sync({ force: true }).then(() => {
+sequelize.sync({ force: false }).then(() => {
   app.listen(PORT, () => console.log('Now listening')); // Start the server and listen on the specified port
 });

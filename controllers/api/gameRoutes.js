@@ -21,11 +21,11 @@ router.get('/reloadgames', async (req, res) => { //This code makes a call to the
       fs.writeFile(filePath, JSON.stringify(data), (err) =>err ? console.log("Error in writing file: "+err) : console.log('Success!')); 
       fs.writeFile(textPath, currentDateTime.toLocaleString(), (err) =>err ? console.log("Error in writing file: "+err) : console.log('Success!')); 
       
-      await Game.destroy({
-        where: {},
-        truncate: false,
-        cascade: false,
-      });
+      // await Game.destroy({
+      //   where: {},
+      //   truncate: false,
+      //   cascade: false,
+      // });
       await Game.bulkCreate(gameData, {
         returning: true,
       })
@@ -40,7 +40,7 @@ router.get('/upcoming', async (req, res) => {
   try{
     const upcomingGameData = await Game.findAll();
     const upcomingGames = upcomingGameData.map(game => game.get({plain: true}));
-    // console.log(upcomingGames);
+    console.log(upcomingGames);
 
     res.render('upcoming', {
       upcomingGames,
