@@ -9,7 +9,7 @@ Game.init(
   {
     // Define the 'id' attribute
     id: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.STRING,
       allowNull: false,
       primaryKey: true,
     },

@@ -1,15 +1,45 @@
+
+<div class = "singles-game-container">
 <!-- Display the matchup between home team and away team -->
-<h2>{{ game.home_team }} vs {{ game.away_team }}</h2>
+<div class = "teams-info-container">
+  <h2>{{ odds.home_team }} vs {{ odds.away_team }}</h2>
+</div>
+
+{{!-- Date of game --}}
 
 <!-- Display odds for the game if available -->
+
+
 {{#if odds}}
-  <h3>Odds:</h3>
-  <ul>
-    <!-- Iterate over each odd and display it in a list -->
-    {{#each odds}}
-      <li>{{ this }}</li>
-    {{/each}}
-  </ul>
+    <!-- Display each of the odds, including which team each line pertains to -->
+    {{#with (getBookmaker "draftkings" odds)}}
+    {{#if this}}
+      <div class="list-items-container">
+        {{#each markets}}
+        {{!-- Would like to have a show explanation button next to each bet, and subsequently a hide explanation --}}
+          <div>
+            {{#when key "===" "h2h"}}
+              {{!-- <p>This is a Head to Head market, sometimes reffered to as the moneyline. It represents the odds for one team to beat another without considering point spreads. Lower number means they're more likely to win</p> --}}
+            {{/when}}
+            {{#when key "===" "spreads"}}
+              <h4 class = "font-dec">SPREAD</h4>
+              {{!-- <p>This is a Point Spreads market. It indicates the handicap given to the underdog and the advantage given to the favorite.</p> --}}
+            {{/when}}
+            {{#when key "===" "totals"}}
+              <h4 class = "font-dec">TOTAL</h4>
+              {{!-- <p>This is a Totals market. It predicts the total combined score of both teams in a game.</p> --}}
+            {{/when}}
+            <div class ="outcome-container">
+                {{#each outcomes}}
+                  <div class="list">{{name}} - {{price}}  {{#if point}} (Point: {{point}}) {{/if}} </div>
+                {{/each}}
+            </div>
+          </div>
+        {{/each}}
+
+      </div>
+    {{/if}}
+  {{/with}}
 {{else}}
   <!-- If no odds available, display a message -->
   <p>No odds available</p>
@@ -17,29 +47,36 @@
 
 <!-- Form to post a new comment if user is logged in -->
 {{#if logged_in}}
-  <form id="comment-form" action="/api/comments/{{ game.id }}/post" method="POST">
+  <form id="comment-form" >
     <textarea name="comment" id="comment" placeholder="Enter your comment"></textarea>
-    <button type="submit">Post Comment</button>
   </form>
+  <button id="post-comment">Post Comment</button>
 {{else}}
   <!-- If user is not logged in, display a message to log in -->
   <p>Please log in to post comments</p>
 {{/if}}
 
 <!-- Display existing comments -->
-{{#each comments}}
-  <div>
-    <!-- Display the content of each comment -->
-    <p>{{ this.content }}</p>
-    <!-- If user is logged in, show edit and delete options -->
-    {{#if logged_in}}
-      <a href="/comments/{{ this.id }}/edit">Edit</a>
-      <form action="/comments/{{ this.id }}/delete" method="POST">
-        <button type="submit">Delete</button>
-      </form>
-    {{/if}}
-  </div>
-{{/each}}
+{{#if comments}}
+  {{#each comments}}
+      <div>
+      <!-- Display the content of each comment -->
+        <p>{{ this.content }}</p>
+      <!-- If user is logged in, show edit and delete options -->
+          {{#if ../logged_in}}
+            <button id="delete-button" 
+              data-id="{{this.id}}"
+              data-user="{{this.user_id}}"
+              >Delete</button>
+            {{!-- <button href='/api/odds/{{this.game_id}}/comments/{{this.id}}'>Edit</button> --}}
+          {{/if}}
+          
+      </div>
+  {{/each}}
+{{else}}
+  <h1>NO COMMENTS</h1>
+{{/if}}
+
 
 <!-- Include a JavaScript file for handling events related to this template -->
-<script src="../public/js/singlegame.js"></script>
+<script src="/js/singlegame.js"></script>

@@ -2,11 +2,13 @@
 body {
    background-color: limegreen; 
 }
+
 .header {
-   display:flex;
-   justify-content: center;
-   margin-top: 100px;
-   height: 250px;
+    display: flex;
+    justify-content: center;
+    margin-top: 100px;
+    margin-bottom: 150px;
+    margin-left: 34px;
 }
 
 .img {
@@ -63,10 +65,10 @@ body {
 }
 
 .loggedin {
-    display:flex;
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 60px;
+    margin-bottom: 100px;
 }
 
 /* .past-btn {
@@ -94,10 +96,65 @@ body {
     display:flex;
     justify-content: center;
     align-items: center;
+
+}
+    
+
+
+/* Singles Game Page */
+
+
+.list-items-container {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.footer {
-    display:block;
-    
-   
+
+
+.list {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.singles-game-container {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.outcome-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: white;
+    background-color: #100000;
+    color: #f5f4f5;
+    border-radius: 14px;
+    border: beige;
+}
+
+.teams-info-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #e3e3e3;
+    color: black;
+    border: floralwhite;
+    border-radius: 13px;
+    height: 97px;
+    text-decoration: underline;
+    margin-bottom: 13px;
+}
+
+.font-dec {
+    font-size: 25px;
+    text-decoration: underline;
 }
