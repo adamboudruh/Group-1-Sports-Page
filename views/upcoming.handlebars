@@ -1,6 +1,6 @@
 
 {{#each upcomingGames as |game| }} <!-- Iterate over each 'game' in the 'game' array -->
-<div class="row align-center mb-5">
+<div id = "upcoming-games-container" class="row align-center mb-5">
   <div class="col-md-6">
     <!-- Render a button for each game -->
     <button class="game-button" data-id={{game.id}}>{{{game.commence_time}}} {{game.home_team}} vs {{game.away_team}} </button>
