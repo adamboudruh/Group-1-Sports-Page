@@ -20,10 +20,13 @@ router.get('/:gameId', async (req, res) => {
         const gameData = await Game.findByPk(gameId); // locates the game in the table using the id that is passed as a query parameter
         const game = gameData.get({ plain: true });
         console.info(game);
-        const commentData = await Comments.findAll({ where: { game_id: gameId } }); //Only pulls the comments for that specific game
+        const commentData = await Comments.findAll({ 
+            where: { game_id: gameId },
+            include: User
+        }); //Only pulls the comments for that specific game and the associated user for each comment
         const comments = commentData.map(comment => comment.get({plain: true}));
         
-        //to this comment array, add an additional 
+        //to this comment array, add an additional field on each object that contains the corresponding username from the Users table
 
         // console.info(`User of id ${req.session.user_id} is viewing this page`); 
 
@@ -35,7 +38,7 @@ router.get('/:gameId', async (req, res) => {
         })
 
         // Send the retrieved data as JSON response to client
-        res.json(data);
+        // res.json(data);
     } catch (error) {
         console.error('Error:', error); // Log any errors occurred during the process
         res.status(500).json({ error: 'Internal server error' }); // Send an error response

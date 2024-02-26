@@ -61,8 +61,9 @@
   {{#each comments}}
       <div>
       <!-- Display the content of each comment -->
-        <p>{{  }}</p>
+        <p>{{ this.user.name }}</p>
         <p>{{ this.content }}</p>
+        <p>{{ formatTimeAgo this.createdAt }}</p>
       <!-- If user is logged in, show edit and delete options -->
           {{#if ../logged_in}}
             {{#when this.user_id '===' ../user_id}}

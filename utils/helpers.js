@@ -1,3 +1,5 @@
+const moment = require('moment');
+
 module.exports = {
 //   get_emoji: () => {
 //     const randomNum = Math.random();
@@ -24,5 +26,8 @@ module.exports = {
         
         if (result) return options.fn(this);
         else  return options.inverse(this);
+    },
+    formatTimeAgo: (date) => {
+        return moment(date).fromNow();
     }
 };
