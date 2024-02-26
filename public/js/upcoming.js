@@ -6,9 +6,10 @@ const handleGameButtonClick = (event) => {
   
     // Extract the game ID from the data attribute of the clicked button
     const gameId = event.target.dataset.id;
+
   
     // Redirect the user to the single game odds page
-    window.location.href =`api/odds/${gameId}`;
+    window.location.href =`/api/odds/${gameId}`;
   };
   
   // Add event listeners to game buttons

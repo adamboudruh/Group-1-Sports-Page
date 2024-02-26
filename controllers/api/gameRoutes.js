@@ -52,28 +52,4 @@ router.get('/upcoming', async (req, res) => {
   }
 })
 
-
-// Route to get a game object containing all of a game's info and render it
-// router.get('/singlegame/:game_id', async (req, res) => {
-//     try{
-//       const gameId = req.params.game_id;
-//       const gameData = await Game.findByPk(gameId); // locates the game in the table using the id that is passed as a query parameter
-      
-//       const game = gameData.get({ plain: true });
-//       console.log(game);
-
-//       const response = await fetch(`/api/odds/${gameId}`);
-//       const oddsData = await response.json();
-//       const odds = oddsData.map(line => line.get({plain: true}));
-
-//       res.render('singlegame', {
-//         game,
-//         odds
-//       })
-//     }
-//     catch (err) {
-//       console.error(err);
-//     }
-// })
-
 module.exports = router; // Export the router module for usage in other files
