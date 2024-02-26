@@ -59,21 +59,26 @@
 <!-- Display existing comments -->
 {{#if comments}}
   {{#each comments}}
-      <div>
-      <!-- Display the content of each comment -->
-        <p>{{ this.content }}</p>
-      <!-- If user is logged in, show edit and delete options -->
+      <div class="border border-dark bg-white p-3 mb-3 mt-1 position-relative" style="border-width: 3px;">
+        <div class="d-flex justify-content-between">
+          <div>
+            <p class="mb-0"><strong>{{ this.user.name }}</strong></p>
+            <p class="mb-0 text-muted"><small>{{ formatTimeAgo this.createdAt }}</small></p>
+          </div>
           {{#if ../logged_in}}
-            <button id="delete-button" 
-              data-id="{{this.id}}"
-              data-user="{{this.user_id}}"
-              >Delete</button>
-              <button id="edit-button" 
-              data-id="{{this.id}}"
-              data-user="{{this.user_id}}"
-              >Edit</button>
+            {{#if (eq this.user_id ../user_id)}}
+                <button id="delete-button" class="btn btn-danger btn-sm" 
+                  data-id="{{this.id}}"
+                  data-user="{{this.user_id}}"
+                  >Delete</button>
+                <button id="edit-button" class="btn btn-primary btn-sm" 
+                  data-id="{{this.id}}"
+                  data-user="{{this.user_id}}"
+                  >Edit</button>
+            {{/if}}
           {{/if}}
-          
+        </div>
+        <p>{{ this.content }}</p>
       </div>
   {{/each}}
 {{else}}

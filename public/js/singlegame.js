@@ -20,6 +20,7 @@ const commentFormHandler = async (event) => {
     if (response.ok) {
       // If posting comment is successful, reload the page
       console.log("Your comment has been posted");
+      location.reload();
     } else {
       // If posting comment fails, display an alert message
       alert('Failed to post comment');
@@ -39,22 +40,24 @@ const commentFormHandler = async (event) => {
 const deleteHandler = async (event) => {
   event.preventDefault(); // Prevent the default form submission behavior
   console.log("BUTTON CLICKED!");
-    const gameID = window.location.pathname.split('/').pop();
+    // const gameID = window.location.pathname.split('/').pop();
     const commentID = event.target.dataset.id;
     const userID = event.target.dataset.user;
-      const response = await fetch(`/api/odds/delete/${gameID}/${userID}/${commentID}`, {
+      const response = await fetch(`/api/odds/delete/${userID}/${commentID}`, {
         method: 'DELETE', // Use the DELETE method
         headers: { 'Content-Type': 'application/json' }, // Set request headers
-      });
+      }).then(response => response.json())
+        .then(data => { alert(data.message) });
+      ;
       // Check if the response is ok
       if (response.ok) {
         // If posting comment is successful, reload the page
         console.log("Your comment has been deleted");
+        window.location.reload();
       } else {
         // If posting comment fails, display an alert message
         console.log('Failed to delete');
       }
-    
 };
 
 // const editHandler = async (event) => {
@@ -86,5 +89,5 @@ const deleteHandler = async (event) => {
 // Add an event listener to the comment form submit event
 document.querySelector('#post-comment').addEventListener('click', commentFormHandler);
 document.querySelector('#delete-button').addEventListener('click', deleteHandler);
-document.querySelector('#edit-button').addEventListener('click', editHandler);
+//document.querySelector('#edit-button').addEventListener('click', editHandler);
 //href='/api/odds/delete/{{this.game_id}}/comments/{{this.id}}'
