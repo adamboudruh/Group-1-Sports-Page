@@ -61,6 +61,17 @@ router.post('/signup', async (req, res) => {
   }
 });
 
+// Middleware to add user data to res.locals
+router.use((req, res, next) => {
+  if (req.session.logged_in) {
+    res.locals.logged_in = true;
+    res.locals.user_id = req.session.user_id;
+  } else {
+    res.locals.logged_in = false;
+  }
+  next();
+});
+
 // Route to handle user logout
 router.post('/logout', (req, res) => {
   // Check if the user is logged in

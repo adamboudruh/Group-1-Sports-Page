@@ -1,0 +1,48 @@
+{{!-- this is compiled code for future development regarding USER ID replacing the login button on the nav bar --}}
+
+
+{{!-- const express = require('express');
+const exphbs  = require('express-handlebars');
+
+const app = express();
+
+const hbs = exphbs.create({
+    // Specify helpers which are only registered on this instance.
+});
+
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
+// Assuming your partials are in a directory named "views/partials"
+hbs.getPartials({ cache : false }).then(function (partials) {
+    console.log(partials); // prints the object with all partials
+});
+
+{{> navbar}}
+
+const hbs = require('hbs');
+
+hbs.registerPartials(__dirname + '/views/partials');
+
+
+{{!--  --}}
+<nav class="navbar navbar-light bg-light">
+  {{#if logged_in}}
+    <a class="navbar-brand" href="#">{{username}}</a>
+  {{else}}
+    <a class="navbar-brand" href="/login">Login</a>
+  {{/if}}
+  <a class="navbar-brand" id="logout-link" href="#">Logout</a>
+</nav>
+{{!--  --}}
+
+// Middleware to add user data to res.locals
+router.use((req, res, next) => {
+  if (req.session.logged_in) {
+    res.locals.logged_in = true;
+    res.locals.user_id = req.session.user_id;
+  } else {
+    res.locals.logged_in = false;
+  }
+  next();
+}); --}}
