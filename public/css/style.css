@@ -211,4 +211,6 @@ footer {
     color: #f5f4f5;
     height: 100px;
     margin-top: auto;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
 }
