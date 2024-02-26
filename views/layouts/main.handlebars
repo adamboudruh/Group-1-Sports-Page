@@ -15,8 +15,11 @@
     {{!-- navbar --}}
     
 <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="/login">Login</a>
-  <a class="navbar-brand" id="logout-link" href="#">Logout</a>
+  {{#if logged_in}}
+    <a class="navbar-brand" id="logout-link" href="">Logout</a>
+  {{else}}
+    <a class="navbar-brand" href="/login">Login</a>
+  {{/if}}
 </nav>
     {{!--  --}}
 
@@ -41,10 +44,9 @@
 
     </footer>
 
-    {{#if logged_in}}
-      {{! Imports the logout js file to allow the user to log out if they're logged in, makes the button work}}
+    
+      {{! Imports the logout js file to allow the user to log out, makes the button work}}
       <script src="/js/logout.js"></script>
-    {{/if}}
 
 
 
