@@ -159,3 +159,42 @@ body {
     margin-top: 50px;
     margin-bottom: 50px;
 }
+
+/* text-area */
+
+#comment {
+    width: 50%;
+    height: 163px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px dotted #672424;
+    border-radius: 19px;
+    background-color: #ffffff;
+    resize: none;
+    margin-top: 42px;
+}
+
+#post-comment {
+    background: rgb(35, 34, 34);
+    color: limegreen;
+    margin-top: 50px;
+    height: 4rem;
+    width: 12rem;
+    font-size: 20px;
+}
+
+#post-comment-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -30px;
+    margin-bottom: 53px;
+}
+
+#comments-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}

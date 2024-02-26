@@ -50,12 +50,20 @@
   <form id="comment-form" >
     <textarea name="comment" id="comment" placeholder="Enter your comment"></textarea>
   </form>
+
+ <div id="post-comment-container">
   <button id="post-comment">Post Comment</button>
 {{else}}
   <!-- If user is not logged in, display a message to log in -->
   <p>Please log in to post comments</p>
 {{/if}}
+ </div>
 
+
+{{!-- <div id="comments-container"> --}}
+
+
+  <h2>Comments</h2>
 <!-- Display existing comments -->
 {{#if comments}}
   {{#each comments}}
@@ -79,7 +87,7 @@
 {{else}}
   <h1>NO COMMENTS</h1>
 {{/if}}
-
+</div>
 
 <!-- Include a JavaScript file for handling events related to this template -->
 <script src="/js/singlegame.js"></script>
