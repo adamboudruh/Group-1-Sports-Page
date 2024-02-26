@@ -90,10 +90,9 @@ router.put('/:gameId/comments/:commentId', (req, res) => {
 });
 
 // Route to delete a selected comment based on comment ID
-router.delete('/delete/:gameId/:userId/:commentId', async (req, res) => {
+router.delete('/delete/:userId/:commentId', async (req, res) => {
     console.log("Deleting...");
     try {
-        const gameId = req.params.gameId; // Extract the game ID from request parameters
         const commentId = req.params.commentId; // Extract the comment ID from request parameters
         const userId = req.params.userId; // Extract the user ID from request parameters
 

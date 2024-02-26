@@ -66,8 +66,7 @@
             <p class="mb-0 text-muted"><small>{{ formatTimeAgo this.createdAt }}</small></p>
           </div>
           {{#if ../logged_in}}
-            {{#when this.user_id '===' ../user_id}}
-              <div>
+            {{#if (eq this.user_id ../user_id)}}
                 <button id="delete-button" class="btn btn-danger btn-sm" 
                   data-id="{{this.id}}"
                   data-user="{{this.user_id}}"
@@ -76,8 +75,7 @@
                   data-id="{{this.id}}"
                   data-user="{{this.user_id}}"
                   >Edit</button>
-              </div>
-            {{/when}}
+            {{/if}}
           {{/if}}
         </div>
         <p>{{ this.content }}</p>
