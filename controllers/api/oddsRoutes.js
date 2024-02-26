@@ -1,10 +1,6 @@
 const router = require('express').Router(); // Import the Router class from Express
 const apiKey = process.env.API_KEY; // Retrieve the API key from environment variables
-const { Game } = require('../../models');
-const { User } = require('../../models');
-const { Comments } = require('../../models');
-
-let comments = []; // Array to store comments
+const { Game, User, Comments } = require('../../models');
 
 // Route to get odds for a specific game ID
 router.get('/:gameId', async (req, res) => {
@@ -68,26 +64,6 @@ router.post('/:gameId/comments', async (req, res) => {
     }
 });
 
-// Route to edit a selected comment based on comment ID
-router.put('/:gameId/comments/:commentId', (req, res) => {
-    try {
-        const gameId = req.params.gameId; // Extract the game ID from request parameters
-        const commentId = req.params.commentId; // Extract the comment ID from request parameters
-        const { comment } = req.body; // Extract the updated comment from request body
-        
-        // Find the comment by ID and update it
-        const index = comments.findIndex(c => c.gameId === gameId && c.commentId === commentId);
-        if (index !== -1) {
-            comments[index].comment = comment;
-            res.json({ message: 'Comment updated successfully' }); // Send success response
-        } else {
-            res.status(404).json({ error: 'Comment not found' }); // Send error response if comment not found
-        }
-    } catch (error) {
-        console.error('Error:', error); // Log any errors occurred during the process
-        res.status(500).json({ error: 'Internal server error' }); // Send an error response
-    }
-});
 
 // Route to delete a selected comment based on comment ID
 router.delete('/delete/:userId/:commentId', async (req, res) => {
@@ -117,5 +93,31 @@ router.delete('/delete/:userId/:commentId', async (req, res) => {
         res.status(500).json({ error: 'Internal server error' }); // Send an error response
     }
 });
+
+router.put('/:commentId/comments/:userId', async (req, res) => {
+    try {
+      const commentId = req.params.commentId;
+      const userId = req.params.userId;
+      const { content } = req.body;
+  
+      // Check if the user is authorized to edit the comment
+      const comment = await Comments.findByPk(commentId);
+      if (!comment) {
+        return res.status(404).json({ error: 'Comment not found' });
+      }
+  
+      if (comment.user_id !== userId) {
+        return res.status(403).json({ error: 'Unauthorized' });
+      }
+  
+      // Update the comment content
+      await comment.update({ content });
+  
+      return res.status(200).json({ message: 'Comment updated successfully' });
+    } catch (error) {
+      console.error('Error updating comment:', error);
+      res.status(500).json({ error: 'Internal server error' });
+    }
+  });
 
 module.exports = router; // Export the router module for usage in other files
