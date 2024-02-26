@@ -14,7 +14,7 @@ if (process.env.JAWSDB_URL) {
     process.env.DB_USER, // Database username
     process.env.DB_PASSWORD, // Database password
     {
-      host: '', // Database host
+      host: 'cdm1s48crk8itlnr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', // Database host
       dialect: 'mysql', // Database dialect
       port: 3306 // Database port
     }

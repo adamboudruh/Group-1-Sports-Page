@@ -1,7 +1,7 @@
 const router = require('express').Router(); // Import the Router class from Express
 const apiKey = process.env.API_KEY; // Retrieve the API key from environment variables
 const { Game } = require('../../models');
-const { User } = require('../../models');
+// const { User } = require('../../models');
 const { Comments } = require('../../models');
 
 let comments = []; // Array to store comments
