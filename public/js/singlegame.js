@@ -74,9 +74,10 @@ const editHandler = async (event) => {
   try {
     // Send a GET request to fetch the content of the selected comment
     const response = await fetch(`/api/odds/${commentID}/comments/${userID}`); // Assuming this endpoint returns the content of the selected comment
-
+    console.log(response);
     // Parse the response as JSON
     const data = await response.json();
+    console.log(data);
 
     // Display a prompt dialog box with the current content of the comment, allowing the user to edit it
     const editedComment = prompt("Edit your comment:", data.content);
