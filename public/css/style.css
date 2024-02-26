@@ -1,6 +1,8 @@
 
 body {
-   background-color: limegreen; 
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .header {
@@ -197,4 +199,16 @@ body {
     align-items: center;
     margin-top: 50px;
     margin-bottom: 50px;
+}
+
+/* footer */
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #100000;
+    color: #f5f4f5;
+    height: 100px;
+    margin-top: auto;
 }
