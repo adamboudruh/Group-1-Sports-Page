@@ -42,11 +42,11 @@ router.get('/upcoming', async (req, res) => {
     const upcomingGames = upcomingGameData.map(game => game.get({plain: true}));
     // console.log(upcomingGames);
 
-    res.render('landingpage', {
+    res.render('upcoming', {
       upcomingGames,
       logged_In: req.session.logged_In,
     })
-    console.log("Rendering landing page...");
+    console.log("Rendering upcoming game page...");
   }
   catch (err) {
     console.error(err);
