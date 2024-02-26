@@ -34,7 +34,9 @@ router.get('/login', (req, res) => {
   }
 
   // If the user is not logged in, render the 'login' view
-  res.render('login');
+  res.render('login', { 
+    logged_in: req.session.logged_In,
+  })
 });
 
 // Route to render the signup page
@@ -46,7 +48,9 @@ router.get('/signup', (req, res) => {
   }
 
   // If the user is not logged in, render the 'signup' view
-  res.render('signup');
+  res.render('signup', { 
+    logged_in: req.session.logged_In,
+  })
 });
 
 module.exports = router; // Export the router module for usage in other files
