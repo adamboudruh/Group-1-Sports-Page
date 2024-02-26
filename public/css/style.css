@@ -1,6 +1,4 @@
 
-
-
 body {
    background-color: limegreen; 
 }
@@ -18,7 +16,7 @@ body {
 }
 
 .hero {
-    background-image: url('/images/landing page image.jpg');
+    background-image: url('/images/landingpageimage1.jpg');
     background-size: cover;
     background-position: center;
     height: 75vh; 
@@ -47,6 +45,7 @@ body {
 .welcome {
     display: flex;
     justify-content: space-evenly;
+    margin-bottom: 75px;
 }
 .login-btn {
     background: rgb(35, 34, 34);

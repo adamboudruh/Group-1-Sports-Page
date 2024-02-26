@@ -46,6 +46,6 @@ cron.schedule(' 30 3 * * *', async () => {
 });
 
 // Sync the Sequelize models with the database and start the server
-sequelize.sync({ force: false }).then(() => {
+sequelize.sync({ force: true }).then(() => {
   app.listen(PORT, () => console.log('Now listening')); // Start the server and listen on the specified port
 });
