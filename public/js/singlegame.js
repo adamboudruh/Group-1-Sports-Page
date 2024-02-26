@@ -45,16 +45,18 @@ const deleteHandler = async (event) => {
       const response = await fetch(`/api/odds/delete/${gameID}/${userID}/${commentID}`, {
         method: 'DELETE', // Use the DELETE method
         headers: { 'Content-Type': 'application/json' }, // Set request headers
-      });
+      }).then(response => response.json())
+        .then(data => { alert(data.message) });
+      ;
       // Check if the response is ok
       if (response.ok) {
         // If posting comment is successful, reload the page
         console.log("Your comment has been deleted");
+        location.reload();
       } else {
         // If posting comment fails, display an alert message
         console.log('Failed to delete');
       }
-    
 };
 
 // const editHandler = async (event) => {

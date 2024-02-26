@@ -61,17 +61,20 @@
   {{#each comments}}
       <div>
       <!-- Display the content of each comment -->
+        <p>{{  }}</p>
         <p>{{ this.content }}</p>
       <!-- If user is logged in, show edit and delete options -->
           {{#if ../logged_in}}
-            <button id="delete-button" 
-              data-id="{{this.id}}"
-              data-user="{{this.user_id}}"
-              >Delete</button>
-              <button id="edit-button" 
-              data-id="{{this.id}}"
-              data-user="{{this.user_id}}"
-              >Edit</button>
+            {{#when this.user_id '===' ../user_id}}
+              <button id="delete-button" 
+                data-id="{{this.id}}"
+                data-user="{{this.user_id}}"
+                >Delete</button>
+                <button id="edit-button" 
+                data-id="{{this.id}}"
+                data-user="{{this.user_id}}"
+                >Edit</button>
+            {{/when}}
           {{/if}}
           
       </div>

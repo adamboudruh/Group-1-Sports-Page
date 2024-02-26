@@ -1,7 +1,7 @@
 const router = require('express').Router(); // Import the Router class from Express
 const apiKey = process.env.API_KEY; // Retrieve the API key from environment variables
 const { Game } = require('../../models');
-// const { User } = require('../../models');
+const { User } = require('../../models');
 const { Comments } = require('../../models');
 
 let comments = []; // Array to store comments
@@ -20,20 +20,22 @@ router.get('/:gameId', async (req, res) => {
         const gameData = await Game.findByPk(gameId); // locates the game in the table using the id that is passed as a query parameter
         const game = gameData.get({ plain: true });
         console.info(game);
-        const commentData = await Comments.findAll({ where: { game_id: gameId } });
+        const commentData = await Comments.findAll({ where: { game_id: gameId } }); //Only pulls the comments for that specific game
         const comments = commentData.map(comment => comment.get({plain: true}));
+        
+        //to this comment array, add an additional 
 
-        console.info(`User of id ${req.session.user_id} is viewing this page`);
+        // console.info(`User of id ${req.session.user_id} is viewing this page`); 
 
         res.render('singlegame', {
             logged_in: req.session.logged_in,
-            user_id: req.session.user_id,
+            user_id: req.session.user_id, // User ID session variable is passed so the page knows what user is logged in
             odds,
             comments
         })
 
         // Send the retrieved data as JSON response to client
-        // res.json(data);
+        res.json(data);
     } catch (error) {
         console.error('Error:', error); // Log any errors occurred during the process
         res.status(500).json({ error: 'Internal server error' }); // Send an error response
@@ -92,7 +94,7 @@ router.delete('/delete/:gameId/:userId/:commentId', async (req, res) => {
         const commentId = req.params.commentId; // Extract the comment ID from request parameters
         const userId = req.params.userId; // Extract the user ID from request parameters
 
-        console.log(`Comment ID: ${userId}\nYour ID: ${req.session.user_id}`)
+        // console.log(`Comment ID: ${userId}\nYour ID: ${req.session.user_id}`)
 
         if (userId == req.session.user_id) {
             const deletedComments = await Comments.destroy({
@@ -100,9 +102,13 @@ router.delete('/delete/:gameId/:userId/:commentId', async (req, res) => {
                   id: commentId, // Delete the comment with this id
                 },
               });
-            res.json({ message: 'Comment deleted successfully' });
+            res.status(200).send({ message: 'Comment deleted successfully' });
         }
-        else { console.log("That's not your comment!"); }
+        else { 
+            const currentUserName = User.findByPk(req.session.user_id);
+            const commentUserName = User.findByPk(userId);
+            res.status(401).send({ message: `That's not your comment! \nComment belongs to: ${commentUserName}\nYour name: ${currentUserName}.`}); 
+        }
 
     } catch (error) {
         console.error('Error:', error); // Log any errors occurred during the process
