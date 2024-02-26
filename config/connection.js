@@ -2,6 +2,11 @@ const Sequelize = require('sequelize');
 require('dotenv').config(); // Load environment variables from .env file
 
 let sequelize;
+let hostURL = '';
+if (process.env.DB_NAME = 'dypg2j9n2u2h4jj0'){ // If the database name matches this, that means that the heroku database is being used, so it will need that host. If a local database is being used, then having that host value on line 21 will cause an error
+  hostURL = 'cdm1s48crk8itlnr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com';
+  console.log("Using heroku database");
+} 
 
 // Check if JAWSDB_URL environment variable is set (commonly used in platforms like Heroku)
 if (process.env.JAWSDB_URL) {
@@ -14,7 +19,7 @@ if (process.env.JAWSDB_URL) {
     process.env.DB_USER, // Database username
     process.env.DB_PASSWORD, // Database password
     {
-      host: 'cdm1s48crk8itlnr.cbetxkdyhwsb.us-east-1.rds.amazonaws.com', // Database host
+      host: hostURL, // Database host
       dialect: 'mysql', // Database dialect
       port: 3306 // Database port
     }
