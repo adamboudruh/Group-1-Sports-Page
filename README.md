@@ -13,10 +13,8 @@ Whenever you access the homepage/landing page,  just click sign up button under 
 - [Credits](#credits)
 - [License](#license)
 
-
-    ```md
-    ![screenshot](/public/images/image.ss.png)
-    ```
+    ![screenshot](./public/images/image_ss.png)
+    
 
 ## Credits
 
