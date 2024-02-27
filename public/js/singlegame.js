@@ -63,17 +63,22 @@ const deleteHandler = async (event) => {
   }
 };
 
-// Define an asynchronous function to handle the edit button click event
 const editHandler = async (event) => {
   event.preventDefault(); // Prevent the default form submission behavior
   
   // Get the comment ID and user ID from the edit button's data attributes
   const commentID = event.target.dataset.id;
   const userID = event.target.dataset.user;
+  const gameId = window.location.pathname.split('/').pop();
 
   try {
     // Send a GET request to fetch the content of the selected comment
-    const response = await fetch(`/api/odds/${commentID}/comments/${userID}`); // Assuming this endpoint returns the content of the selected comment
+    const response = await fetch(`/api/odds/${commentID}/comments/${userID}`);
+
+    // Check if the response is ok
+    if (!response.ok) {
+      throw new Error('Failed to fetch comment content');
+    }
 
     // Parse the response as JSON
     const data = await response.json();
@@ -85,15 +90,20 @@ const editHandler = async (event) => {
     if (editedComment === null || editedComment.trim() === "") {
       return;
     }
-
+    
     // Send a PUT request to update the selected comment with the edited content
     const putResponse = await fetch(`/api/odds/${commentID}/comments/${userID}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ comment: editedComment })
+      body: JSON.stringify({ content: editedComment, gameId })
     });
+
+    // Check if the response is ok
+    if (!putResponse.ok) {
+      throw new Error('Failed to update comment');
+    }
 
     // Parse the response as JSON
     const putData = await putResponse.json();
@@ -102,9 +112,7 @@ const editHandler = async (event) => {
     alert(putData.message);
 
     // If update is successful, reload the page
-    if (putResponse.ok) {
-      window.location.reload();
-    }
+    window.location.reload();
   } catch (error) {
     console.error('Error editing comment:', error);
     alert('Failed to edit comment');
