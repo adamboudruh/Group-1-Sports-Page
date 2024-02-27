@@ -95,30 +95,60 @@ router.delete('/delete/:userId/:commentId', async (req, res) => {
 });
 
 router.put('/:commentId/comments/:userId', async (req, res) => {
-    try {
-      console.log("Editing comment...");
+  try {
       const commentId = req.params.commentId;
       const userId = req.params.userId;
-      const { content } = req.body;
-  
-      // Check if the user is authorized to edit the comment
-      const comment = await Comments.findByPk(commentId);
-      if (!comment) {
-        return res.status(404).json({ error: 'Comment not found' });
+      const gameId = req.body.gameId;
+      const content = req.body.content;
+
+console.log(req.params);
+      // Retrieve the comment with the specified ID
+      // const comment = await Comments.findByPk(commentId);
+      const updatedComment = await Comments.update({comment_id:commentId, user_id:userId, game_id:gameId, content}, {
+        where: {id:commentId}, returning:true, plain:true
+      });
+      // Check if the comment exists
+      if (!updatedComment) {
+          return res.status(404).json({ error: 'Comment not found' });
       }
-  
-      // if (comment.user_id !== userId) {
-      //   return res.status(403).json({ error: 'Unauthorized' });
-      // }
-  
-      // Update the comment content
-      await comment.update({ content });
-  
-      return res.status(200).json({ message: 'Comment updated successfully' });
-    } catch (error) {
-      console.error('Error updating comment:', error);
+      console.log();
+      // Check if the user is authorized to fetch the comment content
+      if (parseInt(req.session.user_id) !== parseInt(userId)) {
+          return res.status(403).json({ error: 'Unauthorized' });
+      }
+
+      // Return the comment content
+      res.status(200).json({ content, message: "Comment was updated!" });
+  } catch (error) {
+      console.error('Error fetching comment content:', error);
       res.status(500).json({ error: 'Internal server error' });
-    }
-  });
+  }
+});
+
+router.get('/:commentId/comments/:userId', async (req, res) => {
+  try {
+      const commentId = req.params.commentId;
+      const userId = req.params.userId;
+console.log(req.params);
+      // Retrieve the comment with the specified ID
+      const comment = await Comments.findByPk(commentId);
+
+      // Check if the comment exists
+      if (!comment) {
+          return res.status(404).json({ error: 'Comment not found' });
+      }
+
+      // Check if the user is authorized to fetch the comment content
+      if (comment.user_id !== parseInt(userId)) {
+          return res.status(403).json({ error: 'Unauthorized' });
+      }
+
+      // Return the comment content
+      res.status(200).json({ content: comment.content });
+  } catch (error) {
+      console.error('Error fetching comment content:', error);
+      res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 module.exports = router; // Export the router module for usage in other files
