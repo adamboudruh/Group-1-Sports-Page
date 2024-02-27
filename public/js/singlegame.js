@@ -65,7 +65,7 @@ const deleteHandler = async (event) => {
 
 const editHandler = async (event) => {
   event.preventDefault(); // Prevent the default form submission behavior
-  console.log("EDIT BUTTON CLICKED");
+  
   // Get the comment ID and user ID from the edit button's data attributes
   const commentID = event.target.dataset.id;
   const userID = event.target.dataset.user;
@@ -84,7 +84,7 @@ const editHandler = async (event) => {
     console.log(data);
 
     // Display a prompt dialog box with the current content of the comment, allowing the user to edit it
-    const editedComment = prompt("Edit your comment:");
+    const editedComment = prompt("Edit your comment:", data.content);
 
     // If the user cancels or leaves the text box empty, do nothing
     if (editedComment === null || editedComment.trim() === "") {
@@ -109,7 +109,7 @@ const editHandler = async (event) => {
     const putData = await putResponse.json();
 
     // Display a message based on the response
-    console.log(putData.message);
+    alert(putData.message);
 
     // If update is successful, reload the page
     window.location.reload();
