@@ -96,6 +96,7 @@ router.delete('/delete/:userId/:commentId', async (req, res) => {
 
 router.put('/:commentId/comments/:userId', async (req, res) => {
     try {
+      console.log("Editing comment...");
       const commentId = req.params.commentId;
       const userId = req.params.userId;
       const { content } = req.body;
@@ -106,9 +107,9 @@ router.put('/:commentId/comments/:userId', async (req, res) => {
         return res.status(404).json({ error: 'Comment not found' });
       }
   
-      if (comment.user_id !== userId) {
-        return res.status(403).json({ error: 'Unauthorized' });
-      }
+      // if (comment.user_id !== userId) {
+      //   return res.status(403).json({ error: 'Unauthorized' });
+      // }
   
       // Update the comment content
       await comment.update({ content });

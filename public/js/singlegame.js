@@ -66,21 +66,21 @@ const deleteHandler = async (event) => {
 // Define an asynchronous function to handle the edit button click event
 const editHandler = async (event) => {
   event.preventDefault(); // Prevent the default form submission behavior
-  
+  console.log("EDIT BUTTON CLICKED");
   // Get the comment ID and user ID from the edit button's data attributes
   const commentID = event.target.dataset.id;
   const userID = event.target.dataset.user;
 
   try {
     // Send a GET request to fetch the content of the selected comment
-    const response = await fetch(`/api/odds/${commentID}/comments/${userID}`); // Assuming this endpoint returns the content of the selected comment
-    console.log(response);
-    // Parse the response as JSON
-    const data = await response.json();
-    console.log(data);
+    // const response = await fetch(`/api/odds/${commentID}/comments/${userID}`); // Assuming this endpoint returns the content of the selected comment
+    // console.log(response);
+    // // Parse the response as JSON
+    // const data = await response.json();
+    // console.log(data);
 
     // Display a prompt dialog box with the current content of the comment, allowing the user to edit it
-    const editedComment = prompt("Edit your comment:", data.content);
+    const editedComment = prompt("Edit your comment:");
 
     // If the user cancels or leaves the text box empty, do nothing
     if (editedComment === null || editedComment.trim() === "") {
@@ -93,14 +93,14 @@ const editHandler = async (event) => {
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ comment: editedComment })
+      body: JSON.stringify({ content: editedComment })
     });
 
     // Parse the response as JSON
     const putData = await putResponse.json();
 
     // Display a message based on the response
-    alert(putData.message);
+    console.log(putData.message);
 
     // If update is successful, reload the page
     if (putResponse.ok) {
