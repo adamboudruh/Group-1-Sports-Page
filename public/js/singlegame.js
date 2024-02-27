@@ -79,9 +79,9 @@ const editHandler = async (event) => {
     if (!response.ok) {
       throw new Error('Failed to fetch comment content');
     }
-
     // Parse the response as JSON
     const data = await response.json();
+    console.log(data);
 
     // Display a prompt dialog box with the current content of the comment, allowing the user to edit it
     const editedComment = prompt("Edit your comment:", data.content);
