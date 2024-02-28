@@ -103,7 +103,6 @@ router.put('/:commentId/comments/:userId', async (req, res) => {
   
         console.log(req.params);
         // Retrieve the comment with the specified ID
-        // const comment = await Comments.findByPk(commentId);
         const updatedComment = await Comments.update({comment_id:commentId, user_id:userId, game_id:gameId, content}, {
           where: {id:commentId}, returning:true, plain:true
         });
