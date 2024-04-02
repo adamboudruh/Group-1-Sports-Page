@@ -13,7 +13,7 @@ router.get('/reloadgames', async (req, res) => { //This code makes a call to the
       // Fetch data from the API
       const response = await fetch(url);
       if (!response.ok) throw new Error('Error in retrieving data.');
-      const data = await response.json();
+      const newData = await response.json();
       const currentDateTime = new Date();
 
       const filePath = path.resolve(__dirname, '../../seeds/gameData.json');
@@ -21,12 +21,18 @@ router.get('/reloadgames', async (req, res) => { //This code makes a call to the
       fs.writeFile(textPath, currentDateTime.toLocaleString(), (err) =>err ? console.log("Error in writing file: "+err) : console.log('Success!')); // This just displays the last time that the database was reloaded so we can easily see whether it's up to date or if something has gone wrong
       
       const currentDate = new Date();
+      console.log(currentDate);
 
-      const oldGames = data.filter(game => new Date(game.commence_time) < currentDate);
+      
+      const currentData = await Game.findAll();
+
+      const oldGames = currentData.filter(game => new Date(game.commence_time) < currentDate);
       console.log("Old games: "+JSON.stringify(oldGames));
-      const newGames = data.filter(game => new Date(game.commence_time) > currentDate);
+      const newGames = newData.filter(game => new Date(game.commence_time) > currentDate);
       console.log("New games: "+JSON.stringify(newGames));
       for (const game of oldGames) {
+        const gameTime = new Date(game.commence_time);
+        console.log(gameTime +" vs. "+ currentDate);
         await Comments.destroy({
           where: { game_id: game.id}
         }) // Deletes the comments linked to the old games first to avoid foreign key constraint errors
@@ -38,14 +44,17 @@ router.get('/reloadgames', async (req, res) => { //This code makes a call to the
           cascade: false,
         })
       }
+
       fs.writeFile(filePath, JSON.stringify(newGames), (err) =>err ? console.log("Error in writing file: "+err) : console.log('Success!')); // Creates a JSON file containing the upcoming games that can be used to seed the database
-      for (const game of gameData) {
+      for (const game of newGames) {
+        const gameTime = new Date(game.commence_time);
+        console.log(gameTime +" vs. "+ currentDate);
         console.log(JSON.stringify("New game: "+game))
         await Game.upsert(game, {
           returning: true,
         });
       }
-      res.json(data); // Send the retrieved data as JSON response to client
+      res.json(newData); // Send the retrieved data as JSON response to client
     }
     catch (err) { console.info("Error in retrieving data from API: "+err) };
   });
